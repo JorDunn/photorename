@@ -1,1 +1,1 @@
-I dislike having photos in my pictures folder with all kinds of names, so this program creates a md5 hash and renames the file.
+I strongly dislike having a ton of photos, all with random names. So I created this script to give them all md5, sha224, or sha512 check-sum names.
