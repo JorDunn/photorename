@@ -51,7 +51,7 @@ def get_sha512_string(input_file):
     return sha512string
 
 
-if __name__ == '__main__':
+def rename():
     verbose(args, "Input File: " + os.path.realpath(args.input_file))
     in_f = os.path.realpath(args.input_file)
     f_name, f_ext = os.path.splitext(in_f)
