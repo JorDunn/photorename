@@ -8,8 +8,8 @@ from hashlib import md5, sha224, sha512
 
 parser = argparse.ArgumentParser(
     description="Rename photos to give them more generic and unified names")
-"""parser.add_argument("-v", "--verbose",
-                    help="increase output verbosity", action="store_true")"""
+parser.add_argument("-v", "--verbose",
+                    help="increase output verbosity", action="store_true")
 parser.add_argument(
     "-a", "--all", help="rename all files in the current directory", action="store_true")
 parser.add_argument("-i", "--input_file",
