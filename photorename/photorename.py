@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
+import argparse
 import os
 import os.path
-import argparse
+import sys
 from hashlib import md5, sha224, sha512
-
 
 parser = argparse.ArgumentParser(
     description="Rename photos to give them more generic and unified names")
@@ -57,6 +57,7 @@ def rename():
         in_f = os.path.realpath(args.input_file)
     except TypeError:
         print("You must specify an input file.")
+        sys.exit(1)
     _, f_ext = os.path.splitext(in_f)
     if args.output_path:
         output_path = "{0}//".format(os.path.realpath(args.output_path))
@@ -76,3 +77,4 @@ def rename():
         os.rename(in_f, out_f)
     except IOError as error:
         print(error)
+        sys.exit(1)
