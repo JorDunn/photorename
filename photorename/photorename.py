@@ -8,8 +8,8 @@ from hashlib import md5, sha224, sha512
 
 parser = argparse.ArgumentParser(
     description="Rename photos to give them more generic and unified names")
-parser.add_argument("-v", "--verbose",
-                    help="increase output verbosity", action="store_true")
+"""parser.add_argument("-v", "--verbose",
+                    help="increase output verbosity", action="store_true")"""
 parser.add_argument(
     "-a", "--all", help="rename all files in the current directory", action="store_true")
 parser.add_argument("-i", "--input_file",
@@ -52,21 +52,27 @@ def get_sha512_string(input_file):
 
 
 def rename():
-    verbose(args, "Input File: " + os.path.realpath(args.input_file))
-    in_f = os.path.realpath(args.input_file)
-    f_name, f_ext = os.path.splitext(in_f)
+    try:
+        verbose(args, "Input File: " + os.path.realpath(args.input_file))
+        in_f = os.path.realpath(args.input_file)
+    except TypeError:
+        print("You must specify an input file.")
+    _, f_ext = os.path.splitext(in_f)
     if args.output_path:
-        output_path = os.path.realpath(args.output_path) + '/'
+        output_path = "{0}//".format(os.path.realpath(args.output_path))
     else:
-        output_path = os.getcwd() + '/'
+        output_path = "{0}//".format(os.getcwd())
     if args.md5:
-        out_f = output_path + \
-            get_md5_string(args.input_file.encode('utf-8')) + f_ext
+        out_f = "{0}\\{1}{2}".format(output_path, get_md5_string(
+            args.input_file.encode('utf-8')), f_ext)
     elif args.sha224:
-        out_f = output_path + \
-            get_sha224_string(args.input_file.encode('utf-8')) + f_ext
+        out_f = "{0}\\{1}{2}".format(output_path, get_sha224_string(
+            args.input_file.encode('utf-8')), f_ext)
     elif args.sha512:
-        out_f = output_path + \
-            get_sha512_string(args.input_file.encode('utf-8')) + f_ext
-    verbose(args, "Output File: " + out_f)
-    os.rename(in_f, out_f)
+        out_f = "{0}\\{1}{2}".format(output_path, get_sha512_string(
+            args.input_file.encode('utf-8')), f_ext)
+    try:
+        verbose(args, "Output File: " + out_f)
+        os.rename(in_f, out_f)
+    except IOError as error:
+        print(error)
