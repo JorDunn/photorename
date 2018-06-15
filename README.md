@@ -4,3 +4,6 @@ Usage:\
 `photorename --md5 -i photo.jpg -o .`\
 `ls`\
 `4c021928fd2a261cd9411e1b57883ab9.jpg`
+
+# Todo
+* switch to docopt
