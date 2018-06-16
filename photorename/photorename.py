@@ -6,6 +6,8 @@ import os.path
 import sys
 from hashlib import md5, sha224, sha512
 
+""" Docopt stuff here """
+
 parser = argparse.ArgumentParser(
     description="Rename photos to give them more generic and unified names")
 parser.add_argument("-v", "--verbose",
