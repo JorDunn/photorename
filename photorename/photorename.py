@@ -6,7 +6,19 @@ import os.path
 import sys
 from hashlib import md5, sha224, sha512
 
-""" Docopt stuff here """
+"""pyrename 1.0.9
+Copyright (c) 2016-2018, Jordan Dunn.
+
+Usage:
+    photorename [--md5 | --sha224 | --sha512] -i <input_file> -o <output_dir>
+    photorename [-h | --help]
+
+Options:
+    -h --help Display this message
+    --md5 use md5 to generate the file name
+    --sha224 use sha224 to generate the file name
+    --sha512 use sha512 to generate the file name
+"""
 
 parser = argparse.ArgumentParser(
     description="Rename photos to give them more generic and unified names")
