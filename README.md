@@ -7,3 +7,4 @@ Usage:\
 
 # Todo
 * switch to docopt
+* check if file already exists and give user the option of overwriting

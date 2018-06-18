@@ -56,27 +56,31 @@ def get_sha512_string(input_file):
 def rename():
     try:
         verbose(args, "Input File: " + os.path.realpath(args.input_file))
-        in_f = os.path.realpath(args.input_file)
+        input_file = os.path.realpath(args.input_file)
     except TypeError:
         print("You must specify an input file.")
         sys.exit(1)
-    _, f_ext = os.path.splitext(in_f)
+
+    _, file_extention = os.path.splitext(input_file)
+
     if args.output_path:
-        output_path = "{0}//".format(os.path.realpath(args.output_path))
+        output_path = os.path.realpath(args.output_path) + "/"
     else:
-        output_path = "{0}//".format(os.getcwd())
+        output_path = os.getcwd() + "/"
+
     if args.md5:
-        out_f = "{0}\\{1}{2}".format(output_path, get_md5_string(
-            args.input_file.encode('utf-8')), f_ext)
+        file_name = get_md5_string(args.input_file.encode('utf-8')) + file_extention
+        output_file = f"{output_path}/{file_name}"
     elif args.sha224:
-        out_f = "{0}\\{1}{2}".format(output_path, get_sha224_string(
-            args.input_file.encode('utf-8')), f_ext)
+        file_name = get_sha224_string(args.input_file.encode('utf-8')) + file_extention
+        output_file = f"{output_path}/{file_name}"
     elif args.sha512:
-        out_f = "{0}\\{1}{2}".format(output_path, get_sha512_string(
-            args.input_file.encode('utf-8')), f_ext)
+        file_name = get_sha512_string(args.input_file.encode('utf-8')) + file_extention
+        output_file = f"{output_path}/{file_name}"
+
     try:
-        verbose(args, "Output File: " + out_f)
-        os.rename(in_f, out_f)
+        verbose(args, "Output File: " + output_file)
+        os.rename(input_file, output_file)
     except IOError as error:
         print(error)
         sys.exit(1)
