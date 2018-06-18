@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
 
-import argparse
-import os
-import os.path
-import sys
-from hashlib import md5, sha224, sha512
-
 """pyrename 1.0.9
 Copyright (c) 2016-2018, Jordan Dunn.
 
@@ -14,29 +8,40 @@ Usage:
     photorename [-h | --help]
 
 Options:
+    -a --all Rename all files in the current directory
+    -i --input_file Set the file to be renamed
+    -o --ouput_path The path to output the file to
+    -v --verbose Increase output verbosity
     -h --help Display this message
     --md5 use md5 to generate the file name
     --sha224 use sha224 to generate the file name
     --sha512 use sha512 to generate the file name
 """
 
-parser = argparse.ArgumentParser(
-    description="Rename photos to give them more generic and unified names")
-parser.add_argument("-v", "--verbose",
-                    help="increase output verbosity", action="store_true")
-parser.add_argument(
-    "-a", "--all", help="rename all files in the current directory", action="store_true")
-parser.add_argument("-i", "--input_file",
-                    help="set the input file to be renamed", type=str)
-parser.add_argument("-o", "--output_path",
-                    help="set the output files location", type=str)
-parser.add_argument(
-    "--md5", help="use md5 to rename output file", action="store_true")
-parser.add_argument(
-    "--sha224", help="use sha224 to rename output file", action="store_true")
-parser.add_argument(
-    "--sha512", help="use sha512 to rename output file", action="store_true")
-args = parser.parse_args()
+import argparse
+import os
+import os.path
+import sys
+from hashlib import md5, sha224, sha512
+import docopt
+
+# parser = argparse.ArgumentParser(
+#    description="Rename photos to give them more generic and unified names")
+# parser.add_argument("-v", "--verbose",
+#                    help="increase output verbosity", action="store_true")
+# parser.add_argument(
+#    "-a", "--all", help="rename all files in the current directory", action="store_true")
+# parser.add_argument("-i", "--input_file",
+#                    help="set the input file to be renamed", type=str)
+# parser.add_argument("-o", "--output_path",
+#                    help="set the output files location", type=str)
+# parser.add_argument(
+#    "--md5", help="use md5 to rename output file", action="store_true")
+# parser.add_argument(
+#    "--sha224", help="use sha224 to rename output file", action="store_true")
+# parser.add_argument(
+#    "--sha512", help="use sha512 to rename output file", action="store_true")
+#args = parser.parse_args()
 
 
 def verbose(args, string):
