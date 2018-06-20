@@ -4,7 +4,7 @@
 Copyright (c) 2016-2018, Jordan Dunn.
 
 Usage:
-    photorename [--md5 | --sha224 | --sha512] -i <input_file> -o <output_dir>
+    photorename [--md5 | --sha256 | --sha512] -i <input_file> -o <output_dir>
     photorename [-h | --help]
 
 Options:
@@ -14,14 +14,14 @@ Options:
     -v --verbose        Increase output verbosity
     -h --help           Display this message
     --md5               Use md5 to generate the file name
-    --sha224            Use sha224 to generate the file name
+    --sha256            Use sha256 to generate the file name
     --sha512            Use sha512 to generate the file name
 """
 
 import os
 import os.path
 import sys
-from hashlib import md5, sha224, sha512
+from hashlib import md5, sha256, sha512
 from docopt import docopt
 
 args = docopt(__doc__, version='photorename v1.0.9')
@@ -39,11 +39,11 @@ def get_md5_string(input_file):
     return md5string
 
 
-def get_sha224_string(input_file):
-    s = sha224()
+def get_sha256_string(input_file):
+    s = sha256()
     s.update(input_file)
-    sha224string = str(s.hexdigest())
-    return sha224string
+    sha256string = str(s.hexdigest())
+    return sha256string
 
 
 def get_sha512_string(input_file):
@@ -71,8 +71,8 @@ def rename():
     if args.md5:
         file_name = get_md5_string(args.input_file.encode('utf-8')) + file_extention
         output_file = f"{output_path}/{file_name}"
-    elif args.sha224:
-        file_name = get_sha224_string(args.input_file.encode('utf-8')) + file_extention
+    elif args.sha256:
+        file_name = get_sha256_string(args.input_file.encode('utf-8')) + file_extention
         output_file = f"{output_path}/{file_name}"
     elif args.sha512:
         file_name = get_sha512_string(args.input_file.encode('utf-8')) + file_extention
