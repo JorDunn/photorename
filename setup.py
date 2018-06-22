@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='PhotoRename',
-    version='1.0.8',
+    version='1.0.9',
     author="Jordan Dunn",
     author_email="me@jordan-dunn.com",
     url="https://github.com/JorDunn/photorename",
