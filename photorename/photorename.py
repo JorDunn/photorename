@@ -11,7 +11,6 @@ Options:
     -a --all            Rename all files in the current directory
     -i --input_file     Set the file to be renamed
     -o --ouput_path     The path to output the file to
-    -v --verbose        Increase output verbosity
     -h --help           Display this message
     --md5               Use md5 to generate the file name
     --sha256            Use sha256 to generate the file name
@@ -25,11 +24,6 @@ from hashlib import md5, sha256, sha512
 from docopt import docopt
 
 args = docopt(__doc__, version='photorename v1.0.9')
-
-
-def verbose(args, string):
-    if args.verbose:
-        print(string)
 
 
 def get_md5_string(input_file):
@@ -55,7 +49,7 @@ def get_sha512_string(input_file):
 
 def rename():
     try:
-        verbose(args, "Input File: " + os.path.realpath(args.input_file))
+        print("Input File: " + os.path.realpath(args.input_file))
         input_file = os.path.realpath(args.input_file)
     except TypeError:
         print("You must specify an input file.")
@@ -79,7 +73,7 @@ def rename():
         output_file = f"{output_path}/{file_name}"
 
     try:
-        verbose(args, "Output File: " + output_file)
+        print(f"Output File: {output_file}")
         os.rename(input_file, output_file)
     except IOError as error:
         print(error)
